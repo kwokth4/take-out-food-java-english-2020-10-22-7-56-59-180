@@ -53,24 +53,24 @@ public class App {
         int discountPrice2 = totalPrice - discount2Saved;
         if(totalPrice >= 30){
             discountPrice1 = totalPrice - 6;
-            output = output.concat("-----------------------------------\nPromotion used:\n");
+            output = output.concat("-----------------------------------\nPromotion used\n");
             System.out.println("-----------------------------------");
             System.out.println("Promotion used:");
             if(discountPrice1 <= discountPrice2){
                 totalPrice = discountPrice1;
-                output = output.concat("满30减6 yuan，saving 6 yuan\n");
-                System.out.println("满30减6 yuan，saving 6 yuan\n");
+                output = output.concat("Deduct 6 yuan when the order reaches 30 yuan, saving 6 yuan\n");
+                System.out.println("Deduct 6 yuan when the order reaches 30 yuan, saving 6 yuan");
             }
             else{
                 totalPrice = discountPrice2;
-                output = output.concat("Half price for certain dishes (Braised chicken，Cold noodles)，saving "+discount2Saved+" yuan\n");
-                System.out.println("Half price for certain dishes (Braised chicken，Cold noodles)，saving "+discount2Saved+" yuan");
+                output = output.concat("Half price for certain dishes (braised chicken and cold noodles), saving "+discount2Saved+" yuan\n");
+                System.out.println("Half price for certain dishes (braised chicken and cold noodles), saving "+discount2Saved+" yuan");
             }
         }
         output = output.concat("-----------------------------------\n");
         System.out.println("-----------------------------------");
-        output = output.concat("Total："+totalPrice+" yuan\n===================================");
-        System.out.println("Total："+totalPrice+" yuan");
+        output.concat("In total: "+totalPrice+" yuan\n===================================");
+        System.out.println("In total: "+totalPrice+" yuan");
         System.out.println("===================================");
         return output;
     }
