@@ -14,7 +14,64 @@ public class App {
 
     public String bestCharge(List<String> inputs) {
         //TODO: write code here
-
-        return null;
+        Item chicken = new Item("ITEM0001","Braised chicken", 18);
+        Item burger = new Item("ITEM0013","Chinese hamburger",6);
+        Item noodles = new Item("ITEM0022 ", "Cold noodles", 8);
+        String output="";
+        int totalPrice = 0;
+        int discount2Saved = 0;
+        System.out.println("============= Order details =============");
+        output = output.concat("============= Order details =============\n");
+        for(String order : inputs){
+            int amount = Integer.parseInt(order.split(" x ")[1]);
+            String id = order.split(" x ")[0];
+            int price;
+            switch(id.toString()) {
+                case "ITEM0001":
+                    price = amount * (int) chicken.getPrice();
+                    totalPrice += price;
+                    discount2Saved += price/2;
+                    output = output.concat(chicken.getName() + " x " + amount + " = " + price + " yuan\n");
+                    System.out.println(chicken.getName() + " x " + amount + " = " + price + " yuan");
+                    break;
+                case "ITEM0013":
+                    price = amount * (int) burger.getPrice();
+                    totalPrice += price;
+                    output = output.concat(burger.getName() + " x " + amount + " = " + price + " yuan\n");
+                    System.out.println(burger.getName() + " x " + amount + " = " + price + " yuan");
+                    break;
+                case "ITEM0022":
+                    price = amount * (int) noodles.getPrice();
+                    totalPrice += price;
+                    discount2Saved += price/2;
+                    output = output.concat(noodles.getName() + " x " + amount + " = " + price + " yuan\n");
+                    System.out.println(noodles.getName() + " x " + amount + " = " + price + " yuan");
+                    break;
+            }
+        }
+        int discountPrice1 = 0;
+        int discountPrice2 = totalPrice - discount2Saved;
+        if(totalPrice >= 30){
+            discountPrice1 = totalPrice - 6;
+            output = output.concat("-----------------------------------\nPromotion used:\n");
+            System.out.println("-----------------------------------");
+            System.out.println("Promotion used:");
+            if(discountPrice1 <= discountPrice2){
+                totalPrice = discountPrice1;
+                output = output.concat("满30减6 yuan，saving 6 yuan\n");
+                System.out.println("满30减6 yuan，saving 6 yuan\n");
+            }
+            else{
+                totalPrice = discountPrice2;
+                output = output.concat("Half price for certain dishes (Braised chicken，Cold noodles)，saving "+discount2Saved+" yuan\n");
+                System.out.println("Half price for certain dishes (Braised chicken，Cold noodles)，saving "+discount2Saved+" yuan");
+            }
+        }
+        output = output.concat("-----------------------------------\n");
+        System.out.println("-----------------------------------");
+        output = output.concat("Total："+totalPrice+" yuan\n===================================");
+        System.out.println("Total："+totalPrice+" yuan");
+        System.out.println("===================================");
+        return output;
     }
 }
